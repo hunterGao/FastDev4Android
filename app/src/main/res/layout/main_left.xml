@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#303030"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="20dip"
+        android:paddingTop="20dip" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/actions_logo" />
+    </LinearLayout>
+
+    <com.allen.view.MyGridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#1e1d1d"
+        app:numColumns="2"
+        app:itemMargin="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/btn_booktag"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_booktag" />
+
+            <TextView
+                android:id="@+id/tv_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="书签(5)"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_comment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_comment" />
+
+            <TextView
+                android:id="@+id/tv_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="推荐(12)"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_order"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_order" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="订阅"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_account"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_account" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="账户"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_cent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_cent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="积分"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_weibo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_weibo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="微博"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_feedback"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_feedback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="反馈"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_about"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/actions_item_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/actions_about" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/actions_item_drawablePaddding"
+                android:text="关于我们"
+                android:textColor="@color/White"
+                android:textSize="@dimen/actions_item_font" />
+        </LinearLayout>
+    </com.allen.view.MyGridLayout>
+
+</LinearLayout>
