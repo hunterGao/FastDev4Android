@@ -12,14 +12,11 @@ import com.huntergao.fastdev4android.R;
 
 
 /**
- * @author allen
- * @email jaylong1302@163.com
- * @date 2013-11-26 下午1:19:35
- * @company 富媒科技
+ * @author gaojian
  * @version 1.0
  * @description 格子布局(类似4.0中的gridlayout)
  */
-public class MyGridLayout extends ViewGroup {
+public class CustomGridLayout extends ViewGroup {
 	private final String TAG = "MyGridLayout";
 
 	int margin = 2;// 每个格子的水平和垂直间隔
@@ -28,24 +25,24 @@ public class MyGridLayout extends ViewGroup {
 	private int mMaxChildHeight = 0;
 	int count = 0;
 
-	GridAdatper adapter;
+	private GridAdatper adapter;
 
-	public MyGridLayout(Context context, AttributeSet attrs, int defStyle) {
+	public CustomGridLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		if (attrs != null) {
 			TypedArray a = getContext().obtainStyledAttributes(attrs,
-					R.styleable.MyGridLayout);
-			colums = a.getInteger(R.styleable.MyGridLayout_numColumns, 2);
-			margin = (int) a.getInteger(R.styleable.MyGridLayout_itemMargin, 2);
+					R.styleable.CustomGridLayout);
+			colums = a.getInteger(R.styleable.CustomGridLayout_numColumns, 2);
+			margin = (int) a.getInteger(R.styleable.CustomGridLayout_itemMargin, 2);
 		}
 	}
 
-	public MyGridLayout(Context context, AttributeSet attrs) {
-		this(context, attrs, 0);
+	public CustomGridLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public MyGridLayout(Context context) {
-		this(context, null);
+	public CustomGridLayout(Context context) {
+		super(context);
 	}
 
 	@Override

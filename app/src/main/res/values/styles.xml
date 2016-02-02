@@ -21,4 +21,6 @@
         <item name="text_color">@color/night_text_color</item>
     </style>
 
+    <style name="Widget.GifMoviewView" parent="@android:style/Widget"></style>
+
 </resources>

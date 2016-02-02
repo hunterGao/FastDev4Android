@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--自定义带秒针的钟表使用的属性-->
+    <!--自定义带秒针的钟表-->
     <declare-styleable name="SecondClock">
         <attr name="dial" format="integer" />
         <attr name="hand_minute" format="integer"/>
         <attr name="hand_hour" format="integer"/>
         <attr name="hand_second" format="integer"/>
     </declare-styleable>
-    <declare-styleable name="MyGridLayout">
+    <!--自定义GridView-->
+    <declare-styleable name="CustomGridLayout">
         <attr name="numColumns" format="integer" />
         <attr name="itemMargin" format="integer" />
     </declare-styleable>
@@ -18,4 +19,13 @@
     <attr name="text_color" format="reference|color"/>
     <attr name="selector_btn" format="reference"/>
     <attr name="selector_list_item" format="reference"/>
+
+    <!--可以展示gif图的View-->
+    <declare-styleable name="GifMoviewView">
+        <attr name="gif" format="reference" />
+        <attr name="paused" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CustomTheme">
+        <attr name="gifMoviewViewStyle" format="reference" />
+    </declare-styleable>
 </resources>
