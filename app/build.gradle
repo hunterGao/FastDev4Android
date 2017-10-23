@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.2'
@@ -16,12 +18,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dependencies {
-        compile fileTree(dir: 'libs', include: ['*.jar'])
-        testCompile 'junit:junit:4.12'
-        compile 'com.android.support:appcompat-v7:23.1.1'
-    }
 }
 
 dependencies {
+    compile files('libs/annotationprocessor.jar')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
 }
+
+//task processorTask(type: Exec) {
+//    commandLine 'copy', '../annotationprocessor/build/libs/annotationprocessor.jar', 'libs/'
+//}
+//
+//processorTask.dependsOn(':annotationprocessor:build')
+//preBuild.dependsOn(processorTask)
