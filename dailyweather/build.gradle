@@ -1,10 +1,11 @@
 apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        applicationId "com.huntergao.fastdev4android"
+        applicationId "com.huntergao.dailyweather"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -16,12 +17,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dependencies {
-        compile fileTree(dir: 'libs', include: ['*.jar'])
-        testCompile 'junit:junit:4.12'
-        compile 'com.android.support:appcompat-v7:23.1.1'
-    }
 }
 
 dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:support-v13:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile files('libs/BaiduLBS_Android.jar')
+    compile project(':beautifulrefreshlibrary')
 }
