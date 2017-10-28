@@ -1,34 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:weather="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
         <android.support.v4.view.ViewPager
             android:id="@+id/city_weather_info_vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
-        <com.huntergao.dailyweather.view.WeatherTypefacedTextView
-            android:id="@+id/no_select_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="没有选择城市"
-            android:textSize="20sp"
-            weather:typeface="fonts/Roboto-Regular.ttf"
-            android:visibility="gone"
             />
     </FrameLayout>
 
 
     <include layout="@layout/activity_main_actionbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
 </RelativeLayout>

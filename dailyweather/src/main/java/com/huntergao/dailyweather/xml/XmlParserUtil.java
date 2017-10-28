@@ -9,11 +9,9 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import android.content.Context;
-
 import com.huntergao.dailyweather.xml.model.ForecastWeatherInfo;
 import com.huntergao.dailyweather.xml.model.SimpleWeatherInfo;
-import com.huntergao.dailyweather.xml.model.TodayWeatherInfo;
+import com.huntergao.dailyweather.xml.model.WeatherInfo;
 import com.huntergao.dailyweather.xml.model.WeatherEnvironment;
 import com.huntergao.dailyweather.xml.model.WeatherIndex;
 
@@ -33,14 +31,14 @@ public class XmlParserUtil {
 	 * 注意：字符串的编码保持一致
 	 * @param xmlData
 	 */
-	public static TodayWeatherInfo parseXmlWithPull(Context context, String xmlData){
+	public static WeatherInfo parseXmlWithPull(String xmlData){
 		try {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			XmlPullParser pullParser = factory.newPullParser();
 			xmlData = new String(xmlData.getBytes(), "utf-8");
 			pullParser.setInput(new StringReader(xmlData));
 			int type = pullParser.getEventType();
-			TodayWeatherInfo weatherInfo = null;
+			WeatherInfo weatherInfo = null;
 			List<ForecastWeatherInfo> forecastList =
 					new ArrayList<ForecastWeatherInfo>();
 			List<WeatherIndex> indexList = new ArrayList<WeatherIndex>();
@@ -50,7 +48,7 @@ public class XmlParserUtil {
 				//开始解析节点
 				case XmlPullParser.START_TAG:
 					if(node.equals("resp")){ //根节点
-						weatherInfo = new TodayWeatherInfo();
+						weatherInfo = new WeatherInfo();
 					} else if(node.equals("city")){
 						String city = pullParser.nextText();
 						weatherInfo.setCity(city);

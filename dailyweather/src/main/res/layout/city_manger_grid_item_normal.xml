@@ -45,7 +45,7 @@
             android:layout_marginTop="12.0dip"
             android:visibility="gone" />
 
-        <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+        <com.huntergao.dailyweather.view.TypefacedTextView
             android:id="@+id/city_manager_temp_tv"
             style="@style/Label"
             android:layout_alignParentBottom="true"

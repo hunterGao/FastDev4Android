@@ -7,7 +7,7 @@
     android:orientation="horizontal"
     android:padding="@dimen/padding_xs" >
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/forecast_week_tv"
         style="@style/Label.Shadow"
         android:layout_width="0dip"
@@ -24,7 +24,7 @@
         android:layout_weight="1"
         android:src="@drawable/ic_default_big" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/forecast_low_temp_tv"
         style="@style/Label.Shadow"
         android:layout_width="0dip"
@@ -35,7 +35,7 @@
         android:text="--°"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/forecast_high_temp_tv"
         style="@style/Label.Shadow"
         android:layout_width="0dip"

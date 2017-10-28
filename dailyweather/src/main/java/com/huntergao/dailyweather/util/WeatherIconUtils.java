@@ -1,10 +1,10 @@
 package com.huntergao.dailyweather.util;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.huntergao.dailyweather.Constants;
 import com.huntergao.dailyweather.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class WeatherIconUtils {
 
@@ -109,10 +109,10 @@ public class WeatherIconUtils {
 	
 	/**
 	 * 获取天气清晰背景
-	 * @param type
+	 * @param info
 	 * @return
 	 */
-	public static int getWeatherNromalBg(String info, int sunrise, int sunset) {
+	public static int getWeatherNormalBg(String info, int sunrise, int sunset) {
 		int type = getType(info);
 		if (isNight(System.currentTimeMillis(), sunrise, sunset))
 			switch (type) {

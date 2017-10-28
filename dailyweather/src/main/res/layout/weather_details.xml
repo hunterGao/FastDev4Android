@@ -3,11 +3,10 @@
     xmlns:weather="http://schemas.android.com/apk/res-auto"
     style="@style/WeatherModule" >
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/details_label"
         style="@style/Label"
         android:layout_marginTop="@dimen/negative_margin_md"
-        android:text="详细信息"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
     <ImageView
@@ -16,7 +15,7 @@
         android:layout_below="@id/details_label"
         android:scaleType="fitXY" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/weather_name_tv"
         style="@style/Label"
         android:layout_height="42dp"
@@ -39,7 +38,7 @@
         android:layout_marginTop="0.0dp"
         android:src="@drawable/ic_default_big" />
     
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/feelslike_label"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -59,7 +58,7 @@
         android:layout_alignLeft="@id/feelslike_label"
         android:layout_below="@id/feelslike_label" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/feelsTemp_tv"
         style="@style/Label"
         android:layout_height="42dp"
@@ -73,7 +72,7 @@
         android:paddingTop="@dimen/padding_xs"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/humidity_label"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -92,7 +91,7 @@
         android:layout_alignLeft="@id/feelslike_label"
         android:layout_below="@id/feelsTemp_tv" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/humidity_tv"
         style="@style/Label"
         android:layout_height="42dp"
@@ -105,7 +104,7 @@
         android:paddingTop="@dimen/padding_xs"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/visibility_label"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -124,7 +123,7 @@
         android:layout_alignLeft="@id/feelslike_label"
         android:layout_below="@id/humidity_tv" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/wind_tv"
         style="@style/Label"
         android:layout_height="42dp"
@@ -137,7 +136,7 @@
         android:text="--"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/uv_label"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -150,7 +149,7 @@
         android:text="风力"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-     <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+     <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/wind_desc"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -170,7 +169,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/wind_tv" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/weather_details_foot_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

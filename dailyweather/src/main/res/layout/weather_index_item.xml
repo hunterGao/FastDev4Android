@@ -15,7 +15,7 @@
         android:layout_marginTop="12.0dip"
         android:src="@drawable/na" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/index_title_tv"
         style="@style/Label.Shadow.Medium"
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         android:layout_alignLeft="@id/index_title_tv"
         android:layout_below="@id/index_title_tv" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/index_desc_tv"
         style="@style/Label.Shadow.Medium"
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
         style="@style/Line.Dotted"
         android:layout_below="@id/index_desc_tv" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/index_detail_tv"
         style="@style/Label.Shadow.Medium"
         android:layout_width="match_parent"

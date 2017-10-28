@@ -25,21 +25,20 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_na" />
+        />
 
     <ImageView
-        android:id="@+id/weather_background_blurred"
+        android:id="@+id/weather_background_blur"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_na_blur" />
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/weather_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_fine_day"
         />
 
 </com.cjj.refresh.BeautifulRefreshLayout>

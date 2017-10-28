@@ -1,7 +1,5 @@
 package com.huntergao.dailyweather.util;
 
-import com.huntergao.dailyweather.HttpCallBackListener;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -61,24 +59,6 @@ public class HttpUtils {
         }
     }
 
-    /**
-     * 通过HttpGet获取数据，不在子线程中
-     * @param uri
-     * @return
-     */
-    public static String getText(String uri) {
-//        try {
-//            HttpGet httpGet = new HttpGet(uri);
-//            HttpResponse httpResponse = new DefaultHttpClient().execute(httpGet);
-//            String result = EntityUtils.toString(httpResponse.getEntity(),
-//                    "utf-8");
-//            return result;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return null;
-    }
-
     public static String getHttpData(final String address) {
         HttpURLConnection connection = null;
         try {
@@ -104,5 +84,20 @@ public class HttpUtils {
             }
         }
         return null;
+    }
+
+    public interface HttpCallBackListener {
+
+        /**
+         * 连接结束时
+         * @param response 获得服务端返回的数据
+         */
+        void onFinish(String response);
+
+        /**
+         * 连接出错时
+         * @param e
+         */
+        void onError(Exception e);
     }
 }

@@ -1,1 +1,1 @@
-include ':app', ':dailyweather', ':beautifulrefreshlibrary', ':annotationprocessor'
+include ':app', ':dailyweather', ':beautifulrefreshlibrary', ':annotationprocessor', ':widgetlibrary'

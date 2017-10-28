@@ -3,7 +3,7 @@
     xmlns:weather="http://schemas.android.com/apk/res-auto"
     style="@style/WeatherModule" >
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/details_label"
         style="@style/Label"
         android:layout_marginTop="@dimen/negative_margin_md"
@@ -25,7 +25,7 @@
         android:layout_marginTop="25.0dp"
         android:src="@drawable/na" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/aqi_level"
         style="@style/Label"
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
         android:layout_alignLeft="@id/aqi_level"
         android:layout_below="@id/aqi_level" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/aqi"
         style="@style/Label"
         android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
         android:text="--"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/aqi_label"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -79,7 +79,7 @@
         android:layout_alignLeft="@id/aqi_label"
         android:layout_below="@id/aqi_label" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/pm25"
         style="@style/Label"
         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         android:text="--"
         weather:typeface="fonts/Roboto-Light.ttf" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/pm25_label"
         style="@style/Label.Medium"
         android:layout_height="42dp"
@@ -110,7 +110,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/pm25_label" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/aqi_desc"
         style="@style/Label.Medium"
         android:layout_width="match_parent"
@@ -133,7 +133,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/aqi_desc" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/weather_aqi_foot_tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

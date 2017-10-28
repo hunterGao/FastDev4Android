@@ -27,14 +27,12 @@ public class City implements Parcelable {
 	 * @param isSelect
 	 */
 	public City(String name, String postID, boolean isSelect) {
-		super();
 		this.name = name;
 		this.postID = postID;
 		this.isSelect = isSelect;
 	}
 
 	public City(String name, String city, String province, String postID) {
-		super();
 		this.name = name;
 		this.city = city;
 		this.province = province;
@@ -87,6 +85,20 @@ public class City implements Parcelable {
 
 	public void setSelect(boolean isSelect) {
 		this.isSelect = isSelect;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		City city = (City) o;
+		return postID.equals(city.postID);
+	}
+
+	@Override
+	public int hashCode() {
+		return postID.hashCode();
 	}
 
 	@Override

@@ -5,7 +5,7 @@
     android:layout_marginBottom="10.0dip"
     android:orientation="vertical" >
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
          android:id="@+id/index_label"
         style="@style/Label"
         android:layout_marginTop="@dimen/negative_margin_md"
@@ -145,7 +145,7 @@
         android:layout_below="@id/travel_index"
         android:scaleType="fitXY" />
 
-    <com.huntergao.dailyweather.view.WeatherTypefacedTextView
+    <com.huntergao.dailyweather.view.TypefacedTextView
         android:id="@+id/forecast_foot"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

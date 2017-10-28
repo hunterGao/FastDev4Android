@@ -27,9 +27,9 @@ public class SelectCityDB {
 	public static final int VERSION = 1;
 	
 	
-	public static SelectCityDB hunterWeatherDB;
+	private static SelectCityDB hunterWeatherDB;
 	
-	public static SQLiteDatabase db;
+	private static SQLiteDatabase db;
 	
 	
 	private SelectCityDB(Context context){
@@ -67,7 +67,7 @@ public class SelectCityDB {
 		return lists;
 	}
 	
-	public City readLoactionCity(){
+	public City readLocationCity(){
 		Cursor cursor = db.query("selectcity", null, "isLocation=?",
 				new String[]{"1"}, null, null, null);
 		if(cursor.moveToFirst()){

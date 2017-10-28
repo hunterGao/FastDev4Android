@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
+import android.util.Log;
 
 import com.huntergao.dailyweather.R;
 
@@ -188,7 +189,7 @@ public class CityDB {
 	private static String getDBDirPath(Context context) {
 		return "/data" + Environment.getDataDirectory().getAbsolutePath()
 				+ File.separator + context.getPackageName() + File.separator
-				+ "databases";
+				+ "databases/";
 	}
 	
 	/**
@@ -201,9 +202,10 @@ public class CityDB {
 		try {
 			File dir = new File(getDBDirPath(context));
 			if(!dir.exists()){
-				dir.createNewFile();
+				dir.mkdir();
 			}
-			File datafile = new File(getDBDirPath(context)+File.separator+DB_NAME);
+			Log.e("Hunter", "copyDB: " + dir.getAbsolutePath());
+			File datafile = new File(dir, DB_NAME);
 			if(datafile.exists())
 				return;
 			in = context.getResources().openRawResource(R.raw.city);
