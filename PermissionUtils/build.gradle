@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 9
+        versionName "1.0.9"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'PermissionUtil'
+
+    publishedGroupId = 'com.github.kayvannj'
+    libraryName = 'PermissionUtils'
+    artifact = 'PermissionUtils'
+
+    libraryDescription = 'A simple wrapper around Android 6.0 runtime permission api'
+
+    siteUrl = 'https://github.com/kayvannj/PermissionUtil'
+    gitUrl = 'https://github.com/kayvannj/PermissionUtil.git'
+
+    libraryVersion = '1.0.9'
+
+    developerId = 'kayvannj'
+    developerName = 'Kayvan Najafzadeh'
+    developerEmail = 'kayvan.najafzadeh@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+// Place it at the end of the file
+// apply from: 'https://raw.githubusercontent.com/kayvannj/JCenter/master/installv1.gradle'
+// apply from: 'https://raw.githubusercontent.com/kayvannj/JCenter/master/bintrayv1.gradle'
