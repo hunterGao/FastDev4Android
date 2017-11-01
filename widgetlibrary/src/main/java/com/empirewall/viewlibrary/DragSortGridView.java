@@ -1,4 +1,4 @@
-package com.huntergao.dailyweather.view;
+package com.empirewall.viewlibrary;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,8 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
-
-import com.huntergao.dailyweather.R;
 
 @SuppressLint("NewApi")
 public class DragSortGridView extends GridView {

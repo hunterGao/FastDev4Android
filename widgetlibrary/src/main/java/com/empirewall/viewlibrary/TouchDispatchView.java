@@ -1,4 +1,4 @@
-package com.huntergao.dailyweather.view;
+package com.empirewall.viewlibrary;
 
 import android.content.Context;
 import android.util.AttributeSet;
