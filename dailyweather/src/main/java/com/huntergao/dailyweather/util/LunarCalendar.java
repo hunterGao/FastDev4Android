@@ -38,7 +38,7 @@ public class LunarCalendar {
     private static String[] mSpecialSolarTermDates;
     /* SPRD: bug257032 2013-12-26 @} */
 
-    /* SPRD: bug258885 2013-12-25 update lunar language resources info @{ */
+    /* SPRD: bug258885 2013-12-25 locationSuccess lunar language resources info @{ */
     private static boolean mHasInitialedRes;
     // such as Mid-Autumn Day
     private static String[] mTraditionalFestivalStr;

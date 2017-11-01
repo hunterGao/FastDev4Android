@@ -32,14 +32,13 @@ public class WeatherApplication extends Application{
         }
         if (cityList.contains(city)) {
             int position = cityPositionMap.get(city);
-            MainActivity.jump(context, position);
+            MainActivity.start(context, position);
         } else {
             cityList.add(city);
             cityPositionMap.put(city, cityList.size() - 1);
-            MainActivity.jump(context, cityList.size() - 1);
+            MainActivity.start(context, cityList.size() - 1);
         }
     }
-
 
     @Override
     public void onCreate() {

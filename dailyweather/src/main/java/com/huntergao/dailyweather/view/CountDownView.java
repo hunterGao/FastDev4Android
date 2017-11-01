@@ -1,37 +1,45 @@
 package com.huntergao.dailyweather.view;
 
-import java.util.Locale;
-
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.huntergao.dailyweather.R;
 
+import java.util.Locale;
+
 public class CountDownView extends FrameLayout {
 
-	private static final String TAG = "CAM_CountDownView";
 	private static final int SET_TIMER_TEXT = 1;
-	private TextView mRemainingSecondsView;
+	private TextView secondsView;
+	private TextView countdownTitle;
+	private Button button;
 	private int mRemainingSecs = 0;
-	private OnCountDownFinishedListener mListener;
 	private Animation mCountDownAnim;
+	private int errorType;
 //	private SoundPool mSoundPool;
 //	private int mBeepTwice;
 //	private int mBeepOnce;
 //	private boolean mPlaySound;
+	private OnErrorClickListener errorClickListener;
 	private final Handler mHandler = new MainHandler();
 
 	public CountDownView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mCountDownAnim = AnimationUtils.loadAnimation(context,
 				R.anim.count_down_exit);
+		LayoutInflater inflater = LayoutInflater.from(context);
+		inflater.inflate(R.layout.count_down_to_location,this, true);
+		setBackgroundColor(getResources().getColor(R.color.common_gray_bg));
 		// Load the beeps
 //		mSoundPool = new SoundPool(1, AudioManager.STREAM_NOTIFICATION, 0);
 //		mBeepOnce = mSoundPool.load(context, R.raw.beep_once, 1);
@@ -42,25 +50,14 @@ public class CountDownView extends FrameLayout {
 		return mRemainingSecs > 0;
 	};
 
-	public interface OnCountDownFinishedListener {
-		public void onCountDownFinished();
-	}
-
 	private void remainingSecondsChanged(int newVal) {
 		mRemainingSecs = newVal;
-		if (newVal == 0) {
-			// Countdown has finished
-			setVisibility(View.INVISIBLE);
-			if(mListener != null)
-			mListener.onCountDownFinished();
-		} else {
-			Locale locale = getResources().getConfiguration().locale;
-			String localizedValue = String.format(locale, "%d", newVal);
-			mRemainingSecondsView.setText(localizedValue);
-			// Fade-out animation
-			mCountDownAnim.reset();
-			mRemainingSecondsView.clearAnimation();
-			mRemainingSecondsView.startAnimation(mCountDownAnim);
+		Locale locale = getResources().getConfiguration().locale;
+		String localizedValue = String.format(locale, "%d", newVal);
+		secondsView.setText(localizedValue);
+		mCountDownAnim.reset();
+		secondsView.clearAnimation();
+		secondsView.startAnimation(mCountDownAnim);
 
 			// Play sound effect for the last 3 seconds of the countdown
 //			if (mPlaySound) {
@@ -72,42 +69,85 @@ public class CountDownView extends FrameLayout {
 //			}
 			// Schedule the next remainingSecondsChanged() call in 1 second
 			mHandler.sendEmptyMessageDelayed(SET_TIMER_TEXT, 1000);
-		}
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		mRemainingSecondsView = (TextView) findViewById(R.id.remaining_seconds);
-	}
-
-	public void setCountDownFinishedListener(
-			OnCountDownFinishedListener listener) {
-		mListener = listener;
+		secondsView = (TextView) findViewById(R.id.remaining_seconds);
+		countdownTitle = (TextView) findViewById(R.id.count_down_title);
+		button = (Button) findViewById(R.id.cancel_btn);
+		button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (errorType == 0) {
+					mRemainingSecs = 0;
+					mHandler.removeMessages(SET_TIMER_TEXT);
+					setVisibility(INVISIBLE);
+				} else if (errorType == 1) {
+					if (errorClickListener != null) {
+						errorClickListener.onErrorClick(errorType);
+					}
+				}
+			}
+		});
 	}
 
 	public void startCountDown(int sec, boolean playSound) {
 		if (sec <= 0) {
 			return;
 		}
+
 		setVisibility(View.VISIBLE);
 //		mPlaySound = playSound;
 		remainingSecondsChanged(sec);
 	}
+
 	public void startCountDown(int sec) {
 		if (sec <= 0) {
 			return;
 		}
+
 		setVisibility(View.VISIBLE);
+		secondsView.setVisibility(VISIBLE);
 		remainingSecondsChanged(sec);
 	}
 
-	public void cancelCountDown() {
-		if (mRemainingSecs > 0) {
-			mRemainingSecs = 0;
-			mHandler.removeMessages(SET_TIMER_TEXT);
-			setVisibility(View.INVISIBLE);
+	public void cancelCountDown(int type) {
+		errorType = type;
+		switch (type) {
+			case 0:
+				if (mRemainingSecs > 0) {
+					mRemainingSecs = 0;
+				}
+				if (mHandler.hasMessages(SET_TIMER_TEXT)) {
+					mHandler.removeMessages(SET_TIMER_TEXT);
+				}
+				setVisibility(INVISIBLE);
+				break;
+			case 1:
+				if (mHandler.hasMessages(SET_TIMER_TEXT)) {
+					mHandler.removeMessages(SET_TIMER_TEXT);
+				}
+				countdownTitle.setText("定位失败");
+				button.setText("手动添加城市");
+				secondsView.setVisibility(INVISIBLE);
+				break;
+			case 2:
+				countdownTitle.setText("请求权限失败");
+				button.setText("手动添加城市");
+				secondsView.setVisibility(INVISIBLE);
+				break;
+
 		}
+	}
+
+	public void setErrorClickListener(OnErrorClickListener listener) {
+		errorClickListener = listener;
+	}
+
+	public interface OnErrorClickListener {
+		void onErrorClick(int type);
 	}
 
 	private class MainHandler extends Handler {

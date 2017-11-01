@@ -14,129 +14,12 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 public class SystemUtils {
-//
-//	/**
-//	 * 获取临时城市数组
-//	 * 
-//	 * @param c
-//	 * @return
-//	 */
-//	public static List<City> getTmpCities(Cursor c) {
-//		List<City> list = new ArrayList<City>();
-//		if (c == null || c.getCount() == 0)
-//			return list;
-//		while (c.moveToNext()) {
-//			String name = c.getString(c.getColumnIndex(CityConstants.NAME));
-//			String postID = c
-//					.getString(c.getColumnIndex(CityConstants.POST_ID));
-//			long refreshTime = c.getLong(c
-//					.getColumnIndex(CityConstants.REFRESH_TIME));
-//			int isLocation = c.getInt(c
-//					.getColumnIndex(CityConstants.ISLOCATION));
-//			City item = new City(name, postID, refreshTime, isLocation);
-//			// L.i("liweiping", "TmpCity  " + item.toString());
-//			if (!list.contains(item))// 如果不存在再添加
-//				list.add(item);
-//		}
-//		c.close();
-//		return list;
-//	}
-//
-//	/**
-//	 * 获取热门城市数组
-//	 * 
-//	 * @param c
-//	 * @return
-//	 */
-//	public static List<City> getHotCities(Cursor c) {
-//		List<City> list = new ArrayList<City>();
-//		if (c == null || c.getCount() == 0)
-//			return list;
-//		while (c.moveToNext()) {
-//			String name = c.getString(c.getColumnIndex(CityConstants.NAME));
-//			String postID = c
-//					.getString(c.getColumnIndex(CityConstants.POST_ID));
-//			int isSelected = c.getInt(c
-//					.getColumnIndex(CityConstants.ISSELECTED));
-//			City item = new City(name, postID, isSelected);
-//			list.add(item);
-//		}
-//		c.close();
-//		return list;
-//	}
-//
-//	/**
-//	 * 获取所有城市数组
-//	 * 
-//	 * @param c
-//	 * @return
-//	 */
-//	public static List<City> getAllCities(Cursor c) {
-//		List<City> list = new ArrayList<City>();
-//		if (c == null || c.getCount() == 0)
-//			return list;
-//		while (c.moveToNext()) {
-//			String province = c.getString(c
-//					.getColumnIndex(CityConstants.PROVINCE));
-//			String city = c.getString(c.getColumnIndex(CityConstants.CITY));
-//			String name = c.getString(c.getColumnIndex(CityConstants.NAME));
-//			String pinyin = c.getString(c.getColumnIndex(CityConstants.PINYIN));
-//			String py = c.getString(c.getColumnIndex(CityConstants.PY));
-//			String phoneCode = c.getString(c
-//					.getColumnIndex(CityConstants.PHONE_CODE));
-//			String areaCode = c.getString(c
-//					.getColumnIndex(CityConstants.AREA_CODE));
-//			String postID = c
-//					.getString(c.getColumnIndex(CityConstants.POST_ID));
-//			City item = new City(province, city, name, pinyin, py, phoneCode,
-//					areaCode, postID);
-//			list.add(item);
-//		}
-//		c.close();
-//		return list;
-//	}
-//
-//	public static String getDBFilePath(Context context) {
-//		return "/data" + Environment.getDataDirectory().getAbsolutePath()
-//				+ File.separator + context.getPackageName() + File.separator
-//				+ "databases" + File.separator + CityProvider.CITY_DB_NAME;
-//	}
 
 	public static String getDBDirPath(Context context) {
 		return "/data" + Environment.getDataDirectory().getAbsolutePath()
 				+ File.separator + context.getPackageName() + File.separator
 				+ "databases";
 	}
-
-//	public static void copyDB(Context context) {
-//		L.i("liweiping", "copyDB begin....");
-//		// 如果不是第一次运行程序，直接返回
-//		if (!PreferenceUtils.getPrefBoolean(context, "isFirstRun", true))
-//			return;
-//		File dbDir = new File(getDBDirPath(context));
-//		if (!dbDir.exists())
-//			dbDir.mkdir();
-//		try {
-//			File dbFile = new File(dbDir, CityProvider.CITY_DB_NAME);
-//			InputStream is = context.getAssets()
-//					.open(CityProvider.CITY_DB_NAME);
-//			FileOutputStream fos = new FileOutputStream(dbFile);
-//			byte[] buffer = new byte[is.available()];// 本地文件读写可用此方法
-//			is.read(buffer);
-//			fos.write(buffer);
-//			// int len = -1;
-//			// byte[] buffer = new byte[1024 * 8];
-//			// while ((len = is.read(buffer)) != -1) {
-//			// fos.write(buffer, 0, len);
-//			fos.close();
-//			is.close();
-//			L.i("liweiping", "copyDB finish....");
-//			CityProvider.createTmpCityTable(context);
-//			PreferenceUtils.setPrefBoolean(context, "isFirstRun", false);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	/**
 	 * 获取一个自定义风格的Dialog

@@ -3,8 +3,8 @@ package com.huntergao.dailyweather.citylocation;
 import android.content.Context;
 import android.util.Log;
 
+import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
@@ -12,10 +12,10 @@ import com.baidu.location.LocationClientOption.LocationMode;
 public class LocationCity {
 
 	private LocationClient mLocationClient;
-	private CityStatus mCityStatus;
+	private LocationListener mLocationListener;
 	
-	public LocationCity(Context context, CityStatus status) {
-		this.mCityStatus = status;
+	public LocationCity(Context context, LocationListener status) {
+		this.mLocationListener = status;
 		mLocationClient = new LocationClient(context, 
 				getLocationClientOption(context));
 		//注册定位监听器
@@ -41,7 +41,6 @@ public class LocationCity {
 	// 开始定位
 	public void startLocation() {
 		mLocationClient.start();
-		mCityStatus.detecting();
 	}
 
 	// 结束定位
@@ -54,22 +53,25 @@ public class LocationCity {
 		return mLocationClient.isStarted();
 	}
 	
-	private BDLocationListener mBDLocationListener = new BDLocationListener() {
+	private BDAbstractLocationListener mBDLocationListener = new BDAbstractLocationListener() {
 		
 		@Override
 		public void onReceiveLocation(BDLocation location) {
-			if(null == location)
+			if(location == null) {
+				mLocationListener.onFail();
 				return;
+			}
 			Log.d("HunterWeather", "Location City "+location.getCity());
 			Log.d("HunterWeather", "Location County "+location.getCountry());
 			Log.d("HunterWeather", "Location Address "+location.getAddrStr());
 			Log.d("HunterWeather", "Location Latitude "+location.getLatitude());
 			Log.d("HunterWeather", "Location Longitude "+location.getLongitude());
 			Log.d("HunterWeather", "Location Type "+location.getLocType());
-			
-			//
-			if(location.getLocType() != BDLocation.TypeNetWorkLocation)
+
+			if(location.getLocType() != BDLocation.TypeNetWorkLocation) {
+				mLocationListener.onFail();
 				return;
+			}
 			String address = location.getAddrStr();
 			String cityName = location.getCity();
 			if(address.contains("县")){
@@ -81,17 +83,15 @@ public class LocationCity {
 			else{
 				cityName = cityName.replace("市", "");
 			}
-			mCityStatus.update(cityName);
+			mLocationListener.onSuccess(cityName);
 			mLocationClient.stop();//停止定位
-			
 		}
 	};
 	
-	public interface CityStatus{
-		//开始定位
-		public void detecting();
+	public interface LocationListener {
+		void onFail();
 		
-		public void update(String city);
+		void onSuccess(String city);
 	}
 	
 }

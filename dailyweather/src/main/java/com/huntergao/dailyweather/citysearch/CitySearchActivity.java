@@ -1,6 +1,8 @@
 package com.huntergao.dailyweather.citysearch;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.huntergao.dailyweather.R;
+import com.huntergao.dailyweather.WeatherApplication;
 import com.huntergao.dailyweather.db.City;
 import com.huntergao.dailyweather.db.CityDB;
 
@@ -33,7 +36,18 @@ public class CitySearchActivity extends Activity implements Filterable, TextWatc
     private RecyclerView recyclerView;
     private View normalV;
     private TextView errorTV;
-    CitySearchListAdapter listAdapter;
+    private CitySearchListAdapter listAdapter;
+    private TextView locationTV;
+
+    public static void start(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, CitySearchActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +60,12 @@ public class CitySearchActivity extends Activity implements Filterable, TextWatc
         editText = (EditText) findViewById(R.id.city_search_edit);
         editText.addTextChangedListener(this);
         errorTV = (TextView) findViewById(R.id.city_search_error);
-
+        locationTV = (TextView) findViewById(R.id.city_search_location_tv);
+        if (WeatherApplication.cityList.isEmpty()) {
+            locationTV.setText("无定位城市");
+        } else {
+            locationTV.setText(WeatherApplication.cityList.get(0).getName());
+        }
         recyclerView = (RecyclerView) findViewById(R.id.city_search_recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
         recyclerView.setHasFixedSize(true);

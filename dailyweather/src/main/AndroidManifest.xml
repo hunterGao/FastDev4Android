@@ -29,39 +29,36 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name="com.huntergao.dailyweather.WeatherApplication">
-        <activity
-            android:name="com.huntergao.dailyweather.weathershow.MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask" >
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.huntergao.dailyweather.citymanage.ManageCityActivity">
+            android:name="com.huntergao.dailyweather.weathershow.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
         </activity>
         <activity android:name=".citymanage.CityManageActivity">
         </activity>
-        <activity android:name=".cityquery.CitySearchActivity">
-        </activity>
-        <activity
-            android:name="com.huntergao.dailyweather.cityquery.QueryCityActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/SecondAppTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan">
+        <activity android:name=".citysearch.CitySearchActivity">
         </activity>
 
         <!-- 百度定位的Service -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
         <!-- 百度定位的Key -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="42hPpWrC6nu5Sd64upWMdeIW"/>
+            android:value="tQDUWDda7Fo1YktHIzBNxydbZc75GKS0"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.huntergao.dailyweather.weathershow;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,23 +20,23 @@ import com.huntergao.dailyweather.R;
 import com.huntergao.dailyweather.WeatherApplication;
 import com.huntergao.dailyweather.citymanage.CityManageActivity;
 import com.huntergao.dailyweather.db.City;
+import com.huntergao.dailyweather.util.AndroidUtils;
+import com.huntergao.dailyweather.view.CountDownView;
+import com.huntergao.dailyweather.view.ViewPagerIndicator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-
-public class MainActivity extends FragmentActivity implements OnClickListener{
+public class MainActivity extends FragmentActivity implements OnClickListener {
 
     private static final String TAG = "MainActivity";
     private static final String POSITION = "position";
-    private Map<City, Integer> cityMap = WeatherApplication.cityPositionMap;
     private List<City> cityList = WeatherApplication.cityList;
     //	public static final String ADDRESS = "http://wthrcdn.etouch.cn/weather_mini?citykey=101020800";
     private ViewPager weatherViewPager;
     private WeatherPagerAdapter pageAdapter;
     private ImageView slideMenuBtn;
+    private CountDownView countDownView;
+    private ViewPagerIndicator indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,54 +44,82 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
         int position = getIntent().getIntExtra(POSITION, 0);
         Log.e(TAG, "onCreate: position = " + position);
         setContentView(R.layout.activity_main);
-        //从数据库中读取已经选择的城市
-//        mCityList = SelectCityDB.getInstance(this).readAllCity();
-        cityList.add(new City("北京", "101010100", false));
-        cityList.add(new City("海淀", "101010200", false));
-        for (int i = 0; i < cityList.size(); i++) {
-            cityMap.put(cityList.get(i), i);
-        }
         initView();
+
+        if (!AndroidUtils.hasPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                || !AndroidUtils.hasPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                || cityList.isEmpty()) {
+            countDownView.cancelCountDown(1);
+            return;
+        }
+
+        countDownView.cancelCountDown(0);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         int position = getIntent().getIntExtra(POSITION, 0);
-        Log.e(TAG, "onResume: position = " + position);
-        pageAdapter.notifyDataSetChanged();
-        weatherViewPager.setCurrentItem(position);
+        if (!cityList.isEmpty()) {
+            pageAdapter.notifyDataSetChanged();
+            weatherViewPager.setCurrentItem(position);
+        }
     }
 
-    /**
-     * 初始化View
-     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     private void initView() {
-        slideMenuBtn = (ImageView) findViewById(R.id.sidebarButton);
+        slideMenuBtn = (ImageView) findViewById(R.id.main_activity_side_btn);
         slideMenuBtn.setOnClickListener(this);
         // ViewPager的设置
-        weatherViewPager = (ViewPager) findViewById(R.id.city_weather_info_vp);
+        weatherViewPager = (ViewPager) findViewById(R.id.main_activity_vp);
         pageAdapter = new WeatherPagerAdapter(getSupportFragmentManager());
-        weatherViewPager.setOnPageChangeListener(new WeatherPageChangeListener());
         weatherViewPager.setAdapter(pageAdapter);
+        countDownView = (CountDownView) findViewById(R.id.main_activity_countdown);
+        countDownView.setErrorClickListener(new CountDownView.OnErrorClickListener() {
+            @Override
+            public void onErrorClick(int type) {
+                if (type == 1) {
+                    CityManageActivity.start(MainActivity.this);
+                }
+            }
+        });
+        indicator = (ViewPagerIndicator) findViewById(R.id.main_activity_indicator);
+        indicator.setViewPager(weatherViewPager);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sidebarButton:
-                Intent intent = new Intent(MainActivity.this, CityManageActivity.class);
-                startActivity(intent);
+            case R.id.main_activity_side_btn:
+                CityManageActivity.start(this);
                 break;
         }
     }
 
-    public static void jump(Context context, int position) {
+    public static void start(Context context, int position) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(POSITION, position);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(POSITION, position);
         context.startActivity(intent);
     }
 
@@ -129,7 +158,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 
     }
 
-    private class WeatherPageChangeListener implements OnPageChangeListener{
+    private class WeatherPageChangeListener implements OnPageChangeListener {
 
         @Override
         public void onPageScrollStateChanged(int arg0) {

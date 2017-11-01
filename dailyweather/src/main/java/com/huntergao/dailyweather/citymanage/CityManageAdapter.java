@@ -95,7 +95,7 @@ public class CityManageAdapter extends RecyclerView.Adapter<CityManageAdapter.Vi
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.jump(context, position);
+                    MainActivity.start(context, position);
                 }
             });
         }

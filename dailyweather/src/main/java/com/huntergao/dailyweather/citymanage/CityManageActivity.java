@@ -1,6 +1,7 @@
 package com.huntergao.dailyweather.citymanage;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,6 +34,15 @@ public class CityManageActivity extends Activity implements View.OnClickListener
     private TextView confirmTV;
     private boolean isEdit;
     private CityManageAdapter adapter;
+
+    public static void start(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent intent = new Intent(context, CityManageActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
